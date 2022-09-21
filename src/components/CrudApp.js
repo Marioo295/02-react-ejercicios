@@ -6,27 +6,27 @@ const initialDb = [
     {
         id:1,
         name:"Mario",
-        constellation:"Libra",
+        horoscopo:"Libra",
     },
     {
         id:2,
         name:"Alex",
-        constellation:"Leo",
+        horoscopo:"Leo",
     },
     {
         id:3,
         name:"M.Ángeles",
-        constellation:"Tauro",
+        horoscopo:"Tauro",
     },
     {
         id:4,
         name:"Juanan",
-        constellation:"Géminis",
+        horoscopo:"Géminis",
     },
     {
         id:5,
         name:"Marta",
-        constellation:"Cáncer",
+        horoscopo:"Cáncer",
     },
 ];
 
@@ -44,13 +44,23 @@ const CrudApp = () => {
         setDb(newData);
     };
 
-    const deleteData = (id) => {};
+    const deleteData = (id) => {
+        let isDelete = window.confirm(`¿Estás seguro de eliminar el registro con id '${id}'?`);
+        if (isDelete) {
+            let newData = db.filter((el) => el.id !== id);
+            setDb(newData);
+        } else {
+            return;
+        }
+    };
 
     return (
         <div>
             <h2>CRUD APP</h2>
-            <CrudForm createData={createData} updateData={updateData} dataToEdit={dataToEdit} setDataToEdit={setDataToEdit}></CrudForm>
-            <CrudTable data={db} setDataToEdit={setDataToEdit} deleteData={deleteData}></CrudTable>
+            <article className="grid-1-2">
+                <CrudForm createData={createData} updateData={updateData} dataToEdit={dataToEdit} setDataToEdit={setDataToEdit}></CrudForm>
+                <CrudTable data={db} setDataToEdit={setDataToEdit} deleteData={deleteData}></CrudTable>
+            </article>
         </div>
     );
 };
