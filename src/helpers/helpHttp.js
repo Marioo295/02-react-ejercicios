@@ -16,7 +16,7 @@ export const helpHttp = () => {
             delete options.body;
         };
 
-        console.log(options);
+        //console.log(options);
 
         setTimeout(() => controller.abort(), 3000);
         /* Final de envío de opciones */
