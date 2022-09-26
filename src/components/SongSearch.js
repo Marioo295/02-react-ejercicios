@@ -25,7 +25,6 @@ const SongSearch = () => {
                 helpHttp().get(artistUrl),
                 helpHttp().get(songUrl),
             ]);
-            console.log(artistRes, songRes);
             setBio(artistRes);
             setLyric(songRes);
             setLoading(false);
@@ -43,9 +42,9 @@ const SongSearch = () => {
             <h2>BUSCADOR DE CANCIONES</h2>
             {loading && <Loader></Loader>}
             <SongForm handleSearch={handleSearch}></SongForm>
-            <SongDetails search={search} lyric={lyric} bio={bio}></SongDetails>
+            {search && !loading && (<SongDetails search={search} lyric={lyric} bio={bio}></SongDetails>)} 
         </div>
     );
 };
 
-export default SongSearch
+export default SongSearch;
