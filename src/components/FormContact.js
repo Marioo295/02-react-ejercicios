@@ -1,8 +1,27 @@
 import React from 'react'
 import { useForm } from '../hooks/useForm';
 
-const initialForm = {};
-const validationsForm = (form) => {};
+const initialForm = {
+    name: "",
+    email: "",
+    subject: "",
+    comments: "",
+};
+
+const validationsForm = (form) => {
+    let errors = {};
+
+    if (!form.name.trim()) {
+        errors.name = "El campo 'Nombre' es requerido";
+    }
+
+    return errors;
+};
+
+let styles = {
+    fontWeight: "bold",
+    color: "#dc3534",
+}
 
 const FormContact = () => {
     const{form, errors, loading, response, handleChange, handleBlur, handleSubmit} = useForm(initialForm, validationsForm);
@@ -19,6 +38,7 @@ const FormContact = () => {
                     value={form.name} 
                     required>
                 </input>
+                {errors.name && <p style={styles}>{errors.name}</p>}
                 <input 
                     type="email"
                     name="email" 
@@ -28,6 +48,7 @@ const FormContact = () => {
                     value={form.email} 
                     required>
                 </input>
+                {errors.email && <p style={styles}>{errors.email}</p>}
                 <input 
                     type="text"
                     name="subject" 
@@ -37,6 +58,7 @@ const FormContact = () => {
                     value={form.subject} 
                     required>
                 </input>
+                {errors.subject && <p style={styles}>{errors.subject}</p>}
                 <textarea 
                     name="comments" 
                     cols="50" 
@@ -47,6 +69,7 @@ const FormContact = () => {
                     value={form.comments} 
                     required>
                 </textarea>
+                {errors.comments && <p style={styles}>{errors.comments}</p>}
                 <input
                     type="submit"
                     value="Enviar">
